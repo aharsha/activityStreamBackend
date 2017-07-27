@@ -1,0 +1,17 @@
+package com.stackroute.activitystream.dao;
+
+import com.stackroute.activitystream.model.Circle;
+
+public interface CircleDAO {
+	
+public boolean addCircle(Circle circle);
+	
+	public boolean addUser(String userEmail, String circleId);
+	
+	public boolean removeUser(String userEmail, String circleId);
+	
+	
+	
+	public boolean updateUser(Circle circle);
+
+}
