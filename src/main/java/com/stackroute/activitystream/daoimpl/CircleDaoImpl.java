@@ -1,6 +1,7 @@
 package com.stackroute.activitystream.daoimpl;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -61,6 +62,25 @@ public class CircleDaoImpl implements CircleDAO {
 	public boolean updateUser(Circle circle) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public boolean deleteCircle(int circleId) {
+		Query query = sessionFacory.getCurrentSession().createQuery("delete Circle where circleId=:circleId");
+		query.setParameter("circleId",circleId);
+		 
+		int result = query.executeUpdate();
+		 
+		if (result > 0) {
+		    System.out.println("Circle Removed successfully");
+		return true;
+		}
+		else
+		{
+			System.out.println("Circle Can not be removed");
+			return false;	
+		}
+		
 	}
 	
 	

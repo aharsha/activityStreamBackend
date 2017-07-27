@@ -41,5 +41,14 @@ public class TestCircle {
 		assertEquals("success",true,circleDao.addCircle(circle));
 		
 	}
+
+//@Test
+public void deleteCircleTestCase()
+{
+	
+	
+	assertEquals("deleting circle",true,circleDao.deleteCircle(1));
+	
+}
 	
 }
