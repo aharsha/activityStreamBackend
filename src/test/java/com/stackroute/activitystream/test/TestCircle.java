@@ -26,22 +26,32 @@ public class TestCircle {
 	circleDao=(CircleDAO)context.getBean("circleDao");
 	}
 	
-@Test
+//@Test
 	
 	public void addCircleTestCase()
 	{
 		Circle circle=new Circle();
 		
-		circle.setCircleId(1);
+		circle.setCircleId((int)(Math.random()*100000));
 		circle.setCircleDiscription("bootCamp_Training");
-		circle.setCircleName("nonVegGroup");
+		circle.setCircleName("VegGroup");
 		circle.setCreatedDate(new Date());
-		circle.setOwnerId("harsha@gmail.com");
+		circle.setOwnerId("gowtham@gmail.com");
 		circle.setStatus("active");
 		assertEquals("success",true,circleDao.addCircle(circle));
 		
 	}
 
+
+
+@Test
+
+public void addUserToCircleTestCase()
+{
+	
+	assertEquals("success",true,circleDao.addUser("abbas@gmail.com",40159));
+	
+}
 //@Test
 public void deleteCircleTestCase()
 {

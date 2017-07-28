@@ -30,7 +30,7 @@ public class TestUser {
 	userDao=(UserDao)context.getBean("userDao");
 	}
 	
-	@Test
+	//@Test
 	
 	public void addUserTestCase()
 	{

@@ -32,7 +32,7 @@ public class CircleDaoImpl implements CircleDAO {
 	}
 
 	@Override
-	public boolean addUser(String userId, String circleId) {
+	public boolean addUser(String userId, int circleId) {
 
 		SubscribeCircle subscribeCircle=new SubscribeCircle();
 		subscribeCircle.setSubscriberId((int)(Math.random()*100000));

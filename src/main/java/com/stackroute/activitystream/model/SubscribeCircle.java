@@ -1,8 +1,13 @@
 package com.stackroute.activitystream.model;
 
-import javax.annotation.Generated;
+
+import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import org.springframework.stereotype.Component;
+
+@Component
+@Entity
 public class SubscribeCircle {
 
 	
@@ -13,7 +18,7 @@ public class SubscribeCircle {
 	private String userId;
 	
 
-	private String circleId;
+	private int circleId;
 	
 	public int getSubscriberId() {
 		return subscriberId;
@@ -35,14 +40,17 @@ public class SubscribeCircle {
 	}
 
 
-	public String getCircleId() {
+	public int getCircleId() {
 		return circleId;
 	}
 
 
-	public void setCircleId(String circleId) {
+	public void setCircleId(int circleId) {
 		this.circleId = circleId;
 	}
+
+
+	
 
 
 }
