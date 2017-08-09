@@ -1,5 +1,7 @@
 package com.stackroute.activitystream.daoimpl;
 
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,6 +83,12 @@ public class CircleDaoImpl implements CircleDAO {
 			return false;	
 		}
 		
+	}
+
+	@Override
+	public List<Circle> myCircle(String userId)
+	{
+		return 	(List<Circle>)sessionFacory.getCurrentSession().createNativeQuery("select * from circle where circleId in( select circleId from activity.subscribecircle where userId=:userId)",Circle.class).setParameter("userId",userId).list();
 	}
 	
 	
