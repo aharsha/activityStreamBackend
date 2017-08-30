@@ -5,14 +5,17 @@ import javax.persistence.Entity;
 
 
 import javax.persistence.Id;
-
+import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
-
+import org.springframework.hateoas.ResourceSupport;
+import org.springframework.stereotype.Component;
+@Component
 @Entity
-public class User {
+@Table(name="user")
+public class User extends ResourceSupport {
 	@Id
 	@NotBlank
 	@NotEmpty
@@ -25,13 +28,15 @@ public class User {
 	@NotEmpty
 	@NotBlank
 	@Pattern(regexp="[a-zA-Z]{3,}", message="FristName must contain only alphabet with atleast 6 characters")
-	private String userName;
+	private String username;
 	
 	
 		
 	
-	@Pattern(regexp="[0-9]{10}")
-	private String mobile;
+	// 
+	//[0-9]{10}
+	@Pattern(regexp = "[789]\\d{9}", message = "Mobile Number is not Proper.")
+		private String mobile;
 	
 	
 	
@@ -65,17 +70,19 @@ public class User {
 		this.password = password;
 	}
 	
-	public String getUserName() {
-		return userName;
-	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
 	
 	
+	
+	
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	@Override
 	public String toString() {
-		return "Clients [userName=" + userName + ", email="
+		return "Clients [userName=" + username + ", email="
 				+ email + ", mobile=" + mobile  + " password=" + password + ", cpassword="
 	+"]";
 	}

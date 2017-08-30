@@ -36,7 +36,7 @@ public class TestUser {
 	{
 		user=new User();
 		
-		user.setUserName("harsha");
+		user.setUsername("harsha");
 		user.setEmail("harsha@gmail.com");
 		user.setMobile("9652983089");
 		user.setPassword("harSHA@1234");

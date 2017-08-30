@@ -4,76 +4,110 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+import org.springframework.hateoas.ResourceSupport;
 import org.springframework.stereotype.Component;
 @Component
 @Entity
-public class Circle {
+@Table(name="circle")
+public class Circle extends ResourceSupport
+{
 	@Id
-	private int circleId;
+	private int circleid;
 	
-private String circleName,ownerId,circleDiscription,status;
+private String circlename,ownerid,circlediscription;
 
 
-
-	
-	private Date createdDate;
-	
-	public int getCircleId() {
-		return circleId;
-	}
-
-	public void setCircleId(int circleId) {
-		this.circleId = circleId;
-	}
-
-	public String getCircleName() {
-		return circleName;
-	}
-
-	public void setCircleName(String circleName) {
-		this.circleName = circleName;
-	}
-
-	public String getOwnerId() {
-		return ownerId;
-	}
-
-	public void setOwnerId(String ownerId) {
-		this.ownerId = ownerId;
-	}
 
 	
+	private Date createddate;
+
+
+
+
+	public int getCircleid() {
+		return circleid;
+	}
+
+
+
+
+	public void setCircleid(int circleid) {
+		this.circleid = circleid;
+	}
+
+
+
+
+	public String getCirclename() {
+		return circlename;
+	}
+
+
+
+
+	public void setCirclename(String circlename) {
+		this.circlename = circlename;
+	}
+
+
+
+
+	public String getOwnerid() {
+		return ownerid;
+	}
+
+
+
+
+	public void setOwnerid(String ownerid) {
+		this.ownerid = ownerid;
+	}
+
+
+
+
+	public String getCirclediscription() {
+		return circlediscription;
+	}
+
+
+
+
+	public void setCirclediscription(String circlediscription) {
+		this.circlediscription = circlediscription;
+	}
+
+
+
+
+
+
+
+	public Date getCreateddate() {
+		return createddate;
+	}
+
+
+
+
+	public void setCreateddate(Date createddate) {
+		this.createddate = createddate;
+	}
+
+
+
 
 	
 
-	public String getStatus() {
-		return status;
-	}
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public String getCircleDiscription() {
-		return circleDiscription;
-	}
-
-	public void setCircleDiscription(String circleDiscription) {
-		this.circleDiscription = circleDiscription;
-	}
-
-	public Date getCreatedDate() {
-		return createdDate;
-	}
-
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
 
 	
 	
+	
 
+	
 	
 	
 }

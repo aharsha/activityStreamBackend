@@ -36,13 +36,20 @@ public class TestCircle {
 	{
 		Circle circle=new Circle();
 		
-		circle.setCircleId((int)(Math.random()*100000));
-		circle.setCircleDiscription("bootCamp_Training");
-		circle.setCircleName("VegGroup");
-		circle.setCreatedDate(new Date());
-		circle.setOwnerId("gowtham@gmail.com");
-		circle.setStatus("active");
+	
+		circle.setCirclename("Veg-NonVeg");
+		
+	
+		circle.setCirclediscription("Veg-NonVeg Both");
+		
+		
+		
+		
+		
+		circle.setOwnerid("harsha@gmail.com");
+		
 		assertEquals("success",true,circleDao.addCircle(circle));
+
 		
 	}
 
@@ -53,7 +60,7 @@ public class TestCircle {
 public void addUserToCircleTestCase()
 {
 	
-	assertEquals("success",true,circleDao.addUser("sofia@gmail.com",40159));
+	
 	
 }
 //@Test
@@ -61,19 +68,19 @@ public void deleteCircleTestCase()
 {
 	
 	
-	assertEquals("deleting circle",true,circleDao.deleteCircle(1));
+	
 	
 }
 @Test
 public void myCirclesTestCase()
 {
 	//assertEquals("Mycircles are", actual);
-	List<Circle> circles=circleDao.myCircle("sofia@gmail.com");
+	List<Circle> circles=circleDao.getAllCircles();
 	
 	for(Circle circle:circles)
 	{
-		System.out.println(" circleName = "+circle.getCircleName());
-		for(Message msg:messageDao.circleInBox(circle.getCircleId()))
+		System.out.println(" circleName = "+circle.getCirclename());
+		/*for(Message msg:messageDao.circleInBox(circle.getCircleid()))
 		{
 			System.out.print("From "+msg.getSenderId());
 			System.out.print(" message:  "+msg.getMessageContent());
@@ -82,6 +89,8 @@ public void myCirclesTestCase()
 			System.out.println(" at "+msg.getMessageTime());
 			
 		}
+		*/
+		System.out.println(" circleDiscription = "+circle.getCirclediscription());
 	}
 }
 	
