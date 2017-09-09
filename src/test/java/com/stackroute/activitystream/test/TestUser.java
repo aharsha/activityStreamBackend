@@ -30,9 +30,10 @@ public class TestUser {
 	userDao=(UserDao)context.getBean("userDao");
 	}
 	
+	//adding user ->new user
 	@Test
 	
-	public void addUserTestCase()
+	public void addUserSuccessTestCase()
 	{
 		user=new User();
 		
@@ -44,6 +45,20 @@ public class TestUser {
 		
 		assertEquals("success",true,userDao.addUser(user));
 		
+	}
+	
+	//adding user ->already exist
+	@Test
+	public void addUserFailTestCase() 
+	{
+
+		 User user=new User();
+		user.setEmail("baba@gmail.com");
+		user.setMobile("9652983089");
+user.setPassword("babaBABA@1234");
+
+user.setUsername("baba");
+userDao.addUser(user);
 	}
 	
 
