@@ -5,12 +5,14 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.stackroute.activitystream.dao.CircleDAO;
 import com.stackroute.activitystream.model.Circle;
+import com.stackroute.activitystream.model.User;
 
 
 
@@ -41,15 +43,10 @@ public class CircleDaoImpl implements CircleDAO {
 
 		
 		
-	//======================================updateUser==========================
 	
 
 
-	@Override
-	public boolean updateUser(Circle circle) {
-		
-		return false;
-	}
+	
 
 	
 	//=======================getCircle==========================================
@@ -76,9 +73,89 @@ public class CircleDaoImpl implements CircleDAO {
 
 
 
+
+
+
+
+
+
+
+	//===================deletecircle=================================
+
+	@Override
+	public boolean deleteCircle(int circleid) {
+		try
+		{
+		Session session=sessionFacory.getCurrentSession();
+		Circle circle = (Circle)session.load(Circle.class,circleid);
+		session.delete(circle);
+
+		if (circle != null) {
+			return true;
+		} else {
+			return false;
+		}
+		}catch(Exception e){return  false;}
+	}
+//===================checkcircle=================================
+	@Override
+	public boolean checkCircle(int circleid) {
+		
+		Circle circle=getCircle(circleid);
+		if(circle!=null)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		
+	}
+
+
+
+
+
+
+
+
+
+
+
+	@Override
+	public boolean updateCircle(Circle circle)
+	{
+		try {
+
+			if (circle != null) {
+				
+				if(checkCircle(circle.getCircleid()))
+				{
+					
+				sessionFacory.getCurrentSession().update(circle);
+				}
+			}
+			return true;
+		} catch (Exception e) {
+
+			return false;
+		}
+	}
+	
+	
+	
+	}
+
+
+
+
+
+
+
 	
 	
 
 	
 
-}
+

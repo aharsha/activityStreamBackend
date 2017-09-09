@@ -49,7 +49,19 @@ public class User extends ResourceSupport {
 	
 	
 	
+	public User()
+	{
+		
+	}
 	
+	
+	public User(String email, String username, String mobile, String password) {
+		super();
+		this.email = email;
+		this.username = username;
+		this.mobile = mobile;
+		this.password = password;
+	}
 	public String getEmail() {
 		return email;
 	}

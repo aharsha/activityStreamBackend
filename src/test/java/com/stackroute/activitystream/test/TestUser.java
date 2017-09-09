@@ -30,7 +30,7 @@ public class TestUser {
 	userDao=(UserDao)context.getBean("userDao");
 	}
 	
-	//@Test
+	@Test
 	
 	public void addUserTestCase()
 	{
@@ -47,7 +47,7 @@ public class TestUser {
 	}
 	
 
-//@Test(expected=DataIntegrityViolationException.class)
+@Test(expected=DataIntegrityViolationException.class)
 
 public void addUserWithDuplicateEmailTestCase()
 {
@@ -59,19 +59,30 @@ public void addUserWithDuplicateEmailTestCase()
 }	
 
 
-//@Test(expected=ConstraintViolationException.class)
+@Test(expected=ConstraintViolationException.class)
 
 public void passwordPatternTestCase()
 {
+	user=new User();
 	
+	user.setUsername("harsha");
+	user.setEmail("harsha@gmail.com");
+	user.setMobile("9652983089");
+	user.setPassword("harsha@1234");
 	
 	
 	assertEquals("UserName pattern not matching",false,userDao.addUser(user));
 	
 }
 
+@Test
+	public void deleteUserSuccessTestCase() 
+	{
+		assertEquals("success",true,userDao.deleteUser("radha@gmail.com"));
 
-//@Test
+	}
+
+@Test
 
 public void validUserTestCase()
 {
@@ -81,7 +92,7 @@ public void validUserTestCase()
 	
 }
 
-//@Test(expected=NullPointerException.class)
+@Test(expected=NullPointerException.class)
 
 public void notValidUserTestCase()
 {

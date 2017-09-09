@@ -6,12 +6,15 @@ import com.stackroute.activitystream.model.Circle;
 
 public interface CircleDAO {
 
-	public boolean addCircle(Circle circle);
+ boolean addCircle(Circle circle);
 
-	public boolean updateUser(Circle circle);
+	boolean deleteCircle(int circleid);
+	boolean updateCircle(Circle circle);
 
-	public List<Circle> getAllCircles();
+	 List<Circle> getAllCircles();
 
-	public Circle getCircle(int circleid);
+	 Circle getCircle(int circleid);
+	
+	boolean checkCircle(int circleid);
 
 }

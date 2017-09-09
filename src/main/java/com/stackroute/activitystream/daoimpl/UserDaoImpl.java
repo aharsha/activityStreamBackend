@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import com.stackroute.activitystream.dao.UserDao;
+import com.stackroute.activitystream.model.Circle;
 import com.stackroute.activitystream.model.User;
 
 
@@ -117,7 +118,11 @@ e.printStackTrace();
 //===========================getUserWithEmail================================
 	
 	public User getUserWithId(String emailId) {
-		user = (User) sessionFactory.getCurrentSession().get(User.class, emailId);
+		//user = (User) sessionFactory.getCurrentSession().load(User.class, emailId);
+		user = (User)sessionFactory.getCurrentSession().createQuery("from User where email =:emailId)").setParameter("emailId",emailId).uniqueResult();
+		
+		System.out.println(emailId+"at dao");
+		System.out.println(user+"user");
 		return user;
 	}
 }
