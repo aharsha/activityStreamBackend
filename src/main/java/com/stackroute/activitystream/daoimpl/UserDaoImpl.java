@@ -94,7 +94,8 @@ e.printStackTrace();
 		try
 		{
 		Session session=sessionFactory.getCurrentSession();
-		User user = (User)session.load(User.class,email);
+		User user = (User)session.get(User.class,email);
+		System.out.println(user+"at delee==============");
 		session.delete(user);
 
 		if (user != null) {
