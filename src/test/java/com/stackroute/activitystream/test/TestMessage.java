@@ -36,11 +36,11 @@ public class TestMessage {
 		Message message=new Message();
 		
 		message.setId((int)(Math.random()*100000));
-		message.setMessageContent("what is ur task status");
+		message.setMessageContent("hello how r u");
 		message.setMessageTime(new Date());
 		message.setMessageType("Text");
-		message.setRecieverId("rak@gmail.com");
-		message.setSenderId("abbas@gmail.com");
+		message.setRecieverId("harsha@gmail.com");
+		message.setSenderId("ramesh@gmail.com");
 		
 		
 		
@@ -51,17 +51,17 @@ public class TestMessage {
 	
 	
 	
-	//@Test
+	@Test
 		public void sendMessageToCircleTestCase()
 		{
 			Message message=new Message();
 			
 			message.setId((int)(Math.random()*100000));
-			message.setMessageContent("thinking same");
+			message.setMessageContent("hi");
 			message.setMessageTime(new Date());
 			message.setMessageType("Text");
 			message.setRecieverCircleId(40159);
-			message.setSenderId("pat@gmail.com");
+			message.setSenderId("harsha@gmail.com");
 			
 			
 			
