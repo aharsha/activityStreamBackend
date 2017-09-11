@@ -122,7 +122,8 @@ public class CircleDaoImpl implements CircleDAO {
 
 
 
-
+//here update is not working ->Hibernate – Non Unique Object Exception
+	//so i used merge method
 	@Override
 	public boolean updateCircle(Circle circle)
 	{
@@ -132,13 +133,25 @@ public class CircleDaoImpl implements CircleDAO {
 				
 				if(checkCircle(circle.getCircleid()))
 				{
-					
-				sessionFacory.getCurrentSession().update(circle);
+					circle.setCreateddate(new Date());
+					System.out.println("updated circle");
+				sessionFacory.getCurrentSession().merge(circle);
+				System.out.println("updated circle");
+				return true;
+				}
+				else
+				{
+					return false;
 				}
 			}
-			return true;
+			else
+			{
+				return false;
+			}
+			
 		} catch (Exception e) {
 
+			e.printStackTrace();
 			return false;
 		}
 	}
