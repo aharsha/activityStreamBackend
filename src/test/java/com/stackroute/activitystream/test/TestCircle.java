@@ -34,7 +34,7 @@ public class TestCircle {
 
 	//@Test
 
-	public void addCircleTestCase() {
+	public void addCircle_PositiveTestCase() {
 		Circle circle = new Circle();
 
 		circle.setCirclename("Veg-NonVeg");
@@ -46,6 +46,21 @@ public class TestCircle {
 		assertEquals("success", true, circleDao.addCircle(circle));
 
 	}
+	
+	@Test
+
+		public void addCircle_NegativeTestCase() {
+			Circle circle = new Circle();
+
+			circle.setCirclename("java batch");
+
+			circle.setCirclediscription("java sept batch");
+
+			circle.setOwnerid("har@gmail.com");
+
+			assertEquals("success", true, circleDao.addCircle(circle));
+
+		}
 
 	@Test
 
@@ -66,6 +81,23 @@ public class TestCircle {
 		
 	}
 	
+	@Test
+	public void updateCircle_NegativeTestCase()
+	{
+		circle=new Circle();
+		
+		circle.setCirclename("Veg-NonVeg  day base");
+
+		circle.setCirclediscription("Veg-NonVeg some times veg");
+
+		circle.setOwnerid("harsha@gmail.com");
+
+		circle.setCircleid(60798);
+		
+		
+		assertEquals("update Success",false,circleDao.updateCircle(circle));
+		
+	}
 	
 	//@Test
 	public void deleteCircle_PositiveTestCase() {

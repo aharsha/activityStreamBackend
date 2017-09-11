@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.stackroute.activitystream.dao.CircleDAO;
+import com.stackroute.activitystream.dao.UserDao;
 import com.stackroute.activitystream.model.Circle;
 import com.stackroute.activitystream.model.User;
 
@@ -23,15 +24,25 @@ public class CircleDaoImpl implements CircleDAO {
 	
 	@Autowired
 	SessionFactory sessionFacory;
+	@Autowired
+	UserDao userDao;
 	
 	//=======================addCircle===================================
 	@Override
 	public boolean addCircle(Circle circle) {
 		try {
+			User owner=userDao.getUserWithId(circle.getOwnerid());
+			if(owner!=null)
+			{
 			circle.setCircleid((int)(Math.random()*100000));
 			circle.setCreateddate(new Date());
 			sessionFacory.getCurrentSession().save(circle);
 			return true;
+			}
+			else
+			{
+				return false;
+			}
 		} catch (Exception e) {
 			
 			e.printStackTrace();
