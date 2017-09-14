@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.stackroute.activitystream.dao.MessageDAO;
 import com.stackroute.activitystream.model.Message;
+import com.stackroute.activitystream.model.UserInBox;
+import com.stackroute.activitystream.model.UserOutBox;
 
 
 
@@ -22,9 +24,11 @@ public class MessageDAOImpl implements MessageDAO
 	@Autowired
 	SessionFactory sessionFacory;
 	@Override
-	public boolean sendMessage(Message message) {
+	public boolean sendMessage(UserOutBox message) {
 		try {
+			System.out.println("============"+message.getMessageContent());
 			sessionFacory.getCurrentSession().save(message);
+			System.out.println(message.getMessageContent());
 			return true;
 		} catch (Exception e) {
 			

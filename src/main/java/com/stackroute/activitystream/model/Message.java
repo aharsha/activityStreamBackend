@@ -35,7 +35,8 @@ public class Message {
 	@Column(name="recievercircleid")
 	int recieverCircleId;
 	
-	
+	@Column(name="tag")
+	String tag;
 
 	public void setTag(String tag) {
 		this.tag = tag;
@@ -97,8 +98,7 @@ public class Message {
 		this.messageTime = messageTime;
 	}
 	
-	@Column(name="tag")
-	String tag;
+	
 		
 
 	public String getTag() {

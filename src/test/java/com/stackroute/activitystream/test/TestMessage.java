@@ -14,11 +14,13 @@ import com.stackroute.activitystream.dao.CircleDAO;
 import com.stackroute.activitystream.dao.MessageDAO;
 import com.stackroute.activitystream.model.Circle;
 import com.stackroute.activitystream.model.Message;
+import com.stackroute.activitystream.model.UserOutBox;
 
 public class TestMessage {
 	private static AnnotationConfigApplicationContext context;
 	private static MessageDAO messageDao;
-	private static Message message;
+	
+	private static UserOutBox message;
 	
 	
 	@BeforeClass
@@ -30,17 +32,17 @@ public class TestMessage {
 	messageDao=(MessageDAO)context.getBean("messageDao");
 	}
 	
-//@Test
+@Test
 	public void sendMessageTestCase()
 	{
-		Message message=new Message();
+	UserOutBox message=new UserOutBox();
 		
 		message.setId((int)(Math.random()*100000));
 		message.setMessageContent("hello how r u");
 		message.setMessageTime(new Date());
 		message.setMessageType("Text");
 		message.setRecieverId("harsha@gmail.com");
-		message.setSenderId("ramesh@gmail.com");
+		message.setSenderId("suresh@gmail.com");
 		
 		
 		
@@ -51,16 +53,16 @@ public class TestMessage {
 	
 	
 	
-	@Test
+	//@Test
 		public void sendMessageToCircleTestCase()
 		{
-			Message message=new Message();
+			UserOutBox message=new UserOutBox();
 			
 			message.setId((int)(Math.random()*100000));
 			message.setMessageContent("hi");
 			message.setMessageTime(new Date());
 			message.setMessageType("Text");
-			message.setRecieverCircleId(40159);
+			message.setRecieverCircleId(60799);
 			message.setSenderId("harsha@gmail.com");
 			
 			
@@ -72,7 +74,7 @@ public class TestMessage {
 	
 	
 	
-	//@Test
+	@Test
 	public void inBoxTestCase()
 	{
 		
@@ -89,12 +91,12 @@ public class TestMessage {
 	}
 	
 	
-	//@Test
+	@Test
 		public void circleInBoxTestCase()
 		{
 			
 			
-			for(Message msg:messageDao.circleInBox(40159))
+			for(Message msg:messageDao.circleInBox(60799))
 			{
 				System.out.print("From "+msg.getSenderId());
 				System.out.print(" message:  "+msg.getMessageContent());
