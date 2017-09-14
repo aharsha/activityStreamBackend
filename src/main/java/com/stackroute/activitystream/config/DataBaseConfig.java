@@ -16,6 +16,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @ComponentScan("com.stackroute.activitystream")
 @EnableTransactionManagement
+
+// Use spring boot instead of programmatic configurate
+// Use applications.properties.
 public class DataBaseConfig 
 {
 	@Bean
