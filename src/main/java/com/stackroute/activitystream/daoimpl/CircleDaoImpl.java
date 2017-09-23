@@ -108,21 +108,6 @@ public class CircleDaoImpl implements CircleDAO {
 		}
 		}catch(Exception e){return  false;}
 	}
-//===================checkcircle=================================
-	@Override
-	public boolean checkCircle(int circleid) {
-		
-		Circle circle=getCircle(circleid);
-		if(circle!=null)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-		
-	}
 
 
 
@@ -142,7 +127,7 @@ public class CircleDaoImpl implements CircleDAO {
 
 			if (circle != null) {
 				
-				if(checkCircle(circle.getCircleid()))
+				if((getCircle(circle.getCircleid())!=null))
 				{
 					circle.setCreateddate(new Date());
 					System.out.println("updated circle");

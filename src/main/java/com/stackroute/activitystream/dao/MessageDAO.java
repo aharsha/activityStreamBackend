@@ -12,7 +12,7 @@ public interface MessageDAO
 
 	boolean sendMessage(UserOutBox message);
 	
-	
+	boolean sendMessageToCircle(UserOutBox message);
 	List<Message> inBox(String userId);
 	List<Message> circleInBox(int circleId);
 }

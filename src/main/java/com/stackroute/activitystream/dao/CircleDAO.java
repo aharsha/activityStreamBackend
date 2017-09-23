@@ -15,11 +15,6 @@ public interface CircleDAO {
 
 	 Circle getCircle(int circleid);
 	
-	boolean checkCircle(int circleid);
 	
-	//Why two methods getCircle and checkCircle.  
-	//If the getCircle return null  => Circle does not exist
-	// else circle exist
-	//So no need to write separate methoc lick checkCircle
 
 }

@@ -3,14 +3,20 @@ package com.stackroute.activitystream.daoimpl;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.stackroute.activitystream.dao.UserCircleDao;
+import com.stackroute.activitystream.model.Circle;
 import com.stackroute.activitystream.model.SubscribeCircle;
+import com.stackroute.activitystream.model.User;
 
 
 @Repository("userCircleDao")
@@ -74,5 +80,20 @@ Query query = sessionFacory.getCurrentSession().createQuery("delete SubscribeCir
 		//return 	(List<Circle>)sessionFacory.getCurrentSession().createNativeQuery("select * from circle where circleId in( select circleId from activity.subscribecircle where userId=:userId)",Circle.class).setParameter("userId",userId).list();
 
 	}
+
+	@Override
+	public List<String> getAllUsers(int circleid) {
+	
+		
+		Criteria criteria=sessionFacory.getCurrentSession().createCriteria(SubscribeCircle.class);
+		
+		
+		criteria.add(Restrictions.eq("circleid",circleid));
+		criteria.setProjection(Projections.property("userid"));
+		List<String> userList=criteria.list();
+		return userList;
+	}
+	
+	
 
 }

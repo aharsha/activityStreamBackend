@@ -32,14 +32,14 @@ public class TestMessage {
 	messageDao=(MessageDAO)context.getBean("messageDao");
 	}
 	
-@Test
+//@Test
 	public void sendMessageTestCase()
 	{
 	UserOutBox message=new UserOutBox();
 		
-		message.setId((int)(Math.random()*100000));
+		//message.setId((int)(Math.random()*100000));
 		message.setMessageContent("hello how r u");
-		message.setMessageTime(new Date());
+		//message.setMessageTime(new Date());
 		message.setMessageType("Text");
 		message.setRecieverId("harsha@gmail.com");
 		message.setSenderId("suresh@gmail.com");
@@ -53,7 +53,7 @@ public class TestMessage {
 	
 	
 	
-	//@Test
+	@Test
 		public void sendMessageToCircleTestCase()
 		{
 			UserOutBox message=new UserOutBox();
@@ -62,19 +62,19 @@ public class TestMessage {
 			message.setMessageContent("hi");
 			message.setMessageTime(new Date());
 			message.setMessageType("Text");
-			message.setRecieverCircleId(60799);
+			message.setRecieverCircleId(37756);
 			message.setSenderId("harsha@gmail.com");
 			
 			
 			
-			assertEquals("success",true,messageDao.sendMessage(message));
+			assertEquals("success",true,messageDao.sendMessageToCircle(message));
 			
 			
 		}
 	
 	
 	
-	@Test
+	//@Test
 	public void inBoxTestCase()
 	{
 		
@@ -96,7 +96,7 @@ public class TestMessage {
 		{
 			
 			
-			for(Message msg:messageDao.circleInBox(60799))
+			for(Message msg:messageDao.circleInBox(37756))
 			{
 				System.out.print("From "+msg.getSenderId());
 				System.out.print(" message:  "+msg.getMessageContent());
