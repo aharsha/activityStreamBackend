@@ -59,7 +59,7 @@ public class MessageDAOImpl implements MessageDAO
 		public boolean sendMessageToCircle(UserOutBox message) {
 			try {
 				System.out.println("before try");
-				for(String user:userCircleDao.getAllUsers(37756))
+				for(String user:userCircleDao.getAllUsers(message.getRecieverCircleId()))
 				{
 				
 				
