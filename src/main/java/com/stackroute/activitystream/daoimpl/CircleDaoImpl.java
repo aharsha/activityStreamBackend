@@ -151,6 +151,22 @@ public class CircleDaoImpl implements CircleDAO {
 			return false;
 		}
 	}
+
+
+
+
+
+
+
+
+
+
+
+	@Override
+	public int getCircleId(String circleName) {
+		Circle c= (Circle)sessionFacory.getCurrentSession().createQuery("from Circle where circlename =:circleName)").setParameter("circleName",circleName).uniqueResult();
+		return c.getCircleid();
+	}
 	
 	
 	

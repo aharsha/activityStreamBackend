@@ -1,11 +1,16 @@
 package com.stackroute.activitystream.daoimpl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.LogicalExpression;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,7 +50,7 @@ public class MessageDAOImpl implements MessageDAO
 			inbox.setSenderId(message.getSenderId());
 			inbox.setTag(message.getTag());
 			sessionFacory.getCurrentSession().save(message);
-			sessionFacory.getCurrentSession().save(inbox);
+		//	sessionFacory.getCurrentSession().save(inbox);
 			System.out.println(message.getMessageContent());
 			return true;
 		} catch (Exception e) {
@@ -101,18 +106,42 @@ public class MessageDAOImpl implements MessageDAO
 		
 	}
 	@Override
-	public List<Message> inBox(String userId) {
-		List<Message> messageList=sessionFacory.getCurrentSession().createQuery("from Message where recieverId=:recieverId").setParameter("recieverId",userId).list();
+	public List<UserOutBox> inBox(String friend,String user) {
+		List<UserOutBox> messageList;
+		//messageList=sessionFacory.getCurrentSession().createQuery("from UserOutBox where (recieverId=:rId and senderId=:sId) or (senderId=:rId and recieverId=:sId)  .setParameter("rId",friend).list();
 		
-		return messageList;
+		Criteria messageCriteria=sessionFacory.getCurrentSession().createCriteria(UserOutBox.class);
+		// 
+		ArrayList<String> al=new ArrayList<String>(); 
+		al.add(friend);
+		al.add(user);
+		
+		Criterion sendList=Restrictions.in("senderId",al);
+		Criterion recieveList=Restrictions.in("recieverId",al);
+		
+		
+		LogicalExpression friendMsg=Restrictions.and(sendList, recieveList);
+	
+		
+		messageCriteria.add(friendMsg);
+	
+		messageCriteria.addOrder(Order.asc("messageTime"));
+		return messageCriteria.list();
 	}
 	
 	@Override
-	public List<Message> circleInBox(int circleId) {
-List<Message> circleMessageList=sessionFacory.getCurrentSession().createQuery("from Message where recieverCircleId=:circleId").setParameter("circleId",circleId).list();
+	public List<UserOutBox> circleInBox(int circleId) {
 		
-		return circleMessageList;
+		Criteria messageCriteria=sessionFacory.getCurrentSession().createCriteria(UserOutBox.class);
 		
+		Criterion circleMesseagesCrieterian=Restrictions.eq("recieverCircleId",circleId);
+		
+//List<UserOutBox> circleMessageList=sessionFacory.getCurrentSession().createQuery("from UserOutBox where  recieverCircleId=:circleId").setParameter("circleId",circleId).list();
+		messageCriteria.add(circleMesseagesCrieterian);
+		messageCriteria.addOrder(Order.asc("messageTime"));
+		
+		return messageCriteria.list();
+	
 	}
 
 }

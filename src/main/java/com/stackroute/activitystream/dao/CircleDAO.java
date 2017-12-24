@@ -14,6 +14,8 @@ public interface CircleDAO {
 	 List<Circle> getAllCircles();
 
 	 Circle getCircle(int circleid);
+	 
+	 int getCircleId(String circleName);
 	
 	
 

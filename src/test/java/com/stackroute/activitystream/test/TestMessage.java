@@ -32,17 +32,17 @@ public class TestMessage {
 	messageDao=(MessageDAO)context.getBean("messageDao");
 	}
 	
-//@Test
+@Test
 	public void sendMessageTestCase()
 	{
 	UserOutBox message=new UserOutBox();
 		
 		//message.setId((int)(Math.random()*100000));
-		message.setMessageContent("hello how r u");
+		message.setMessageContent("hey wats up!");
 		//message.setMessageTime(new Date());
 		message.setMessageType("Text");
-		message.setRecieverId("harsha@gmail.com");
-		message.setSenderId("suresh@gmail.com");
+		message.setRecieverId("baba@gmail.com");
+		message.setSenderId("harsha@gmail.com");
 		
 		
 		
@@ -53,7 +53,7 @@ public class TestMessage {
 	
 	
 	
-	@Test
+	//@Test
 		public void sendMessageToCircleTestCase()
 		{
 			UserOutBox message=new UserOutBox();
@@ -79,7 +79,7 @@ public class TestMessage {
 	{
 		
 		
-		for(Message msg:messageDao.inBox("harsha@gmail.com"))
+		for(UserOutBox msg:messageDao.inBox("raju@gmail.com","harsha@gmail.com"))
 		{
 			System.out.print("From "+msg.getSenderId());
 			System.out.print(" message:  "+msg.getMessageContent());
@@ -91,12 +91,12 @@ public class TestMessage {
 	}
 	
 	
-	@Test
+	//@Test
 		public void circleInBoxTestCase()
 		{
 			
 			
-			for(Message msg:messageDao.circleInBox(37756))
+			/*for(Message msg:messageDao.circleInBox(37756))
 			{
 				System.out.print("From "+msg.getSenderId());
 				System.out.print(" message:  "+msg.getMessageContent());
@@ -105,5 +105,6 @@ public class TestMessage {
 				System.out.println(" at "+msg.getMessageTime());
 				
 			}
+			*/
 		}
 }
